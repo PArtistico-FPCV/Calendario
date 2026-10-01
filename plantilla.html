@@ -69,7 +69,7 @@ main{max-width:1040px;margin:0 auto;padding:12px 20px 40px}
 
 /* Un fin de semana = una ficha partida en días */
 .we{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
-.day{display:grid;grid-template-columns:78px 1fr;gap:14px;padding:14px 16px}
+.day{display:grid;grid-template-columns:94px 1fr;gap:14px;padding:14px 16px}
 .day+.day{border-top:1.5px solid var(--line)}
 .day.full{background:repeating-linear-gradient(135deg,transparent 0 9px,rgba(127,150,170,.09) 9px 18px)}
 .dl{display:flex;flex-direction:column;gap:2px}
@@ -94,7 +94,7 @@ footer p{margin:6px 0;max-width:46em}
 .legend{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-bottom:10px}
 .legend span{display:inline-flex;gap:8px;align-items:center}
 .legend .pips{display:inline-flex;gap:4px}
-@media (max-width:520px){.hero{padding-top:34px}.month h2{font-size:1.6rem}.day{grid-template-columns:70px 1fr;gap:12px}}
+@media (max-width:520px){.hero{padding-top:34px}.month h2{font-size:1.6rem}.day{grid-template-columns:88px 1fr;gap:12px}}
 @media (prefers-reduced-motion:no-preference){
   .hero h1{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
   @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
@@ -207,7 +207,7 @@ footer p{margin:6px 0;max-width:46em}
     if(shown.length){
       body='<ul class="events">'+shown.map(function(e){
         var multi=e.s!==e.e?range(e.s,e.e):'';
-        var hh=(e.h&&e.h[dy.dow])?({M:'Mañana',T:'Tarde'})[e.h[dy.dow]]:'';
+        var hh=(e.h&&e.h[dy.dow])?({M:'Mañana',T:'Tarde'})[e.h[dy.dow]]:'Todo el día';
         var meta=[multi,hh,e.p,CATS[e.c].label].filter(Boolean).join(' · ');
         return '<li class="ev c-'+e.c+'"><i></i><div><div class="t">'+esc(e.t)+'</div><div class="m">'+esc(meta)+'</div></div></li>';
       }).join('')+'</ul>';
