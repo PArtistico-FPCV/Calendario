@@ -13,9 +13,10 @@ CAT = {
     "curso":"curso",
     "reunión":"reun","reunion":"reun",
     "prueba de acceso":"acceso",
+    "día festivo":"fest","dia festivo":"fest","festivo":"fest",
 }
 HOR = {"mañana":"M","manana":"M","tarde":"T","todo el día":"","todo el dia":""}
-DEFAULT_N = {"comp":1,"esp":1,"int":1,"trofeo":1,"acceso":1,"curso":0,"reun":0}  # si Huecos está vacío
+DEFAULT_N = {"comp":1,"esp":1,"int":1,"trofeo":1,"acceso":1,"curso":0,"reun":0,"fest":2}  # si Huecos está vacío
 
 def s(v): return str(v).strip() if v is not None else ""
 def as_date(v):
@@ -35,7 +36,8 @@ for i,row in enumerate(ws.iter_rows(min_row=2, max_col=9, values_only=True), sta
     if not s(t): errors.append(f"Fila {i}: falta el nombre del Evento"); continue
     k = CAT.get(s(c).lower())
     if not k: errors.append(f"Fila {i}: Categoría no reconocida («{s(c)}»). Elige una de la lista"); continue
-    if s(n) == "": huecos = DEFAULT_N[k]
+    if k == "fest": huecos = 2          # un día festivo siempre ocupa los 2 huecos
+    elif s(n) == "": huecos = DEFAULT_N[k]
     else:
         try: huecos = int(float(s(n).replace(",",".")))
         except ValueError: huecos = -1
